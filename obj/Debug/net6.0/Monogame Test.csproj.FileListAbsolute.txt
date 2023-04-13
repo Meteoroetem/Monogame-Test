@@ -1,0 +1,26 @@
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Monogame Test.exe
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Monogame Test.deps.json
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Monogame Test.runtimeconfig.json
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Monogame Test.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Monogame Test.pdb
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\MonoGame.Framework.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.csproj.AssemblyReference.cache
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.AssemblyInfoInputs.cache
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.AssemblyInfo.cs
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.csproj.CoreCompileInputs.cache
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.csproj.CopyComplete
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\refint\Monogame Test.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.pdb
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\Monogame Test.genruntimeconfig.cache
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\obj\Debug\net6.0\ref\Monogame Test.dll
+C:\Users\rotem\Desktop\Programming\C# .NET\Monogame Test\bin\Debug\net6.0\Content\Short_Sunflower_Sprite_Sheet.xnb
