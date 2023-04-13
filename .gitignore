@@ -2,3 +2,24 @@ bin
 obj
 Content\bin
 Content\obj
+bin/Debug/net6.0/Monogame Test.dll
+bin/Debug/net6.0/Monogame Test.exe
+bin/Debug/net6.0/Monogame Test.pdb
+Content/obj/DesktopGL/net6.0/Content/.mgcontent
+Content/obj/DesktopGL/net6.0/Content/.mgstats
+Content/obj/DesktopGL/net6.0/Content/Short_Sunflower_Sprite_Sheet.mgcontent
+obj/Monogame Test.csproj.nuget.dgspec.json
+obj/Monogame Test.csproj.nuget.g.props
+obj/project.assets.json
+obj/project.nuget.cache
+obj/Debug/net6.0/apphost.exe
+obj/Debug/net6.0/Monogame Test.assets.cache
+obj/Debug/net6.0/Monogame Test.csproj.AssemblyReference.cache
+obj/Debug/net6.0/Monogame Test.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/Monogame Test.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/Monogame Test.dll
+obj/Debug/net6.0/Monogame Test.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/Monogame Test.genruntimeconfig.cache
+obj/Debug/net6.0/Monogame Test.pdb
+obj/Debug/net6.0/ref/Monogame Test.dll
+obj/Debug/net6.0/refint/Monogame Test.dll
