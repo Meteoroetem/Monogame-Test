@@ -103,22 +103,25 @@
   },
   "packageFolders": {
     "C:\\Users\\rotem\\.nuget\\packages\\": {},
+    "C:\\Users\\rotem\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rotem\\Desktop\\Programming\\C# .NET\\Monogame Test\\Monogame Test.csproj",
+      "projectUniqueName": "C:\\Users\\rotem\\Desktop\\Programming\\C#\\MonoGame\\Monogame-Test\\Monogame Test.csproj",
       "projectName": "Monogame Test",
-      "projectPath": "C:\\Users\\rotem\\Desktop\\Programming\\C# .NET\\Monogame Test\\Monogame Test.csproj",
+      "projectPath": "C:\\Users\\rotem\\Desktop\\Programming\\C#\\MonoGame\\Monogame-Test\\Monogame Test.csproj",
       "packagesPath": "C:\\Users\\rotem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rotem\\Desktop\\Programming\\C# .NET\\Monogame Test\\obj\\",
+      "outputPath": "C:\\Users\\rotem\\Desktop\\Programming\\C#\\MonoGame\\Monogame-Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Users\\rotem\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\rotem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rotem\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -127,6 +130,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -170,7 +174,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
