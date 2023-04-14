@@ -1,7 +1,7 @@
-bin
-obj
-Content\bin
-Content\obj
+bin/
+obj/
+Content/bin/
+Content/obj/
 bin/Debug/net6.0/Monogame Test.dll
 bin/Debug/net6.0/Monogame Test.exe
 bin/Debug/net6.0/Monogame Test.pdb
@@ -20,6 +20,14 @@ obj/Debug/net6.0/Monogame Test.csproj.FileListAbsolute.txt
 obj/Debug/net6.0/Monogame Test.dll
 obj/Debug/net6.0/Monogame Test.GeneratedMSBuildEditorConfig.editorconfig
 obj/Debug/net6.0/Monogame Test.genruntimeconfig.cache
+obj/Debug/net6.0/Monogame Test.pdb
+obj/Debug/net6.0/ref/Monogame Test.dll
+obj/Debug/net6.0/refint/Monogame Test.dll
+bin/Debug/net6.0/Monogame Test.dll
+bin/Debug/net6.0/Monogame Test.pdb
+obj/Debug/net6.0/Monogame Test.assets.cache
+obj/Debug/net6.0/Monogame Test.dll
+obj/Debug/net6.0/Monogame Test.GeneratedMSBuildEditorConfig.editorconfig
 obj/Debug/net6.0/Monogame Test.pdb
 obj/Debug/net6.0/ref/Monogame Test.dll
 obj/Debug/net6.0/refint/Monogame Test.dll
