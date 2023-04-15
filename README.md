@@ -1,2 +1,2 @@
 # Monogame-Test
-this is the linux branch
+A test game for MonoGame
