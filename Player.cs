@@ -11,6 +11,7 @@ class Player
     /// </summary>
     /// <value>The fps of the animation</value>
     public float animationSpeed = 3;
+    public float moveSpeed = 0.5f;
     public int spriteScale = 10;
     public Player(Texture2D _spriteSheet, Rectangle[] _idleFrames, Rectangle[] _rightFrames, Rectangle[] _leftFrames){
         spriteSheet = _spriteSheet;
@@ -53,8 +54,8 @@ class Player
     /// A rectangle that represents the location and boundries of the player
     /// </summary>
     /// <value>The location and boundries of the player</value>
-    public Rectangle Area => _area;
-
+    public Rectangle Area =>
+            new Rectangle(_area.Location, new(11 * spriteScale, 20 * spriteScale));
     private Rectangle _currentSprite;
     /// <summary>
     /// The rectangle of the current sprite in the spritesheet
@@ -83,12 +84,15 @@ class Player
 
 	public void NextFrame(){
         if(_nextFrame){
+            //? If the current frame is 1, it will become 0 and vice versa.
             _currentFrame = 1 - _currentFrame;
-            var _currentFrames =
-                (Rectangle[])
+            var _currentFrames = (Rectangle[])
                 this.GetType().GetField(_currentAnimation.ToLower() + "Frames").GetValue(this);
             _currentSprite = _currentFrames[_currentFrame];
             _nextFrame = false;
         }
+    }
+    public void Transform(Vector2 byWhat){
+        _area.Location = (_area.Location.ToVector2() + spriteScale*moveSpeed*byWhat).ToPoint();
     }
 }

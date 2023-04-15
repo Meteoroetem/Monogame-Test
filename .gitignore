@@ -1,5 +1,7 @@
 bin/
+bin/Debug/net6.0/
 obj/
+obj/Debug/net6.0/
 Content/bin/
 Content/obj/
 bin/Debug/net6.0/Monogame Test.dll

@@ -9,8 +9,8 @@ public class MainGame : Game
 	private GraphicsDeviceManager _graphics;
 	private SpriteBatch spriteBatch;
     Player myPlayer;
-    bool isKeyJustPressed = false;
-    bool wasKeyPressed = false;
+    /*bool isKeyJustPressed = false;
+    bool wasKeyPressed = false;*/
 
 
     public MainGame()
@@ -44,25 +44,43 @@ public class MainGame : Game
 
 	protected override void Update(GameTime gameTime)
 	{
-		if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-			Exit();
-        
-        // TODO: Add your update logic here
-        if(Keyboard.GetState().IsKeyDown(Keys.Right)){
-            isKeyJustPressed = wasKeyPressed ? false : true;
+        bool leftKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Left);
+        bool rightKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Right);
+        bool upKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Up);
+        bool downKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Down);
+        bool spaceBarPressed = Keyboard.GetState().IsKeyDown(Keys.Space);
+        bool shiftKeyPressed = Keyboard.GetState().IsKeyDown(Keys.LeftShift);
+
+        if(rightKeyPressed)
+        {
             myPlayer.CurrentAnimation = "Right";
-            if(Keyboard.GetState().IsKeyDown(Keys.Left)){
+            myPlayer.Transform(Vector2.UnitX);
+
+            if(leftKeyPressed)
                 myPlayer.CurrentAnimation = "Idle";
-            }
         }
-        else if(Keyboard.GetState().IsKeyDown(Keys.Left)){
-            isKeyJustPressed = wasKeyPressed ? false : true;
+        else if(leftKeyPressed)
+        {
             myPlayer.CurrentAnimation = "Left";
+            myPlayer.Transform(-Vector2.UnitX);
         }
         else{
             myPlayer.CurrentAnimation = "Idle";
         }
-        wasKeyPressed = !Keyboard.GetState().IsKeyUp(Keys.Right) || !Keyboard.GetState().IsKeyUp(Keys.Left);
+
+        if(downKeyPressed)
+            myPlayer.spriteScale += 1;
+        else if(upKeyPressed)
+            myPlayer.spriteScale -= 1;
+
+        if(spaceBarPressed){
+            myPlayer.moveSpeed = 1;
+            myPlayer.animationSpeed = 6;
+        }
+        else{
+            myPlayer.moveSpeed = 0.5f;
+            myPlayer.animationSpeed = 3;
+        }
 
         myPlayer.FrameTimer += gameTime.ElapsedGameTime.TotalSeconds;
         myPlayer.NextFrame();
