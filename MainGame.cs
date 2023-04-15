@@ -29,7 +29,7 @@ public class MainGame : Game
 	protected override void LoadContent()
 	{
 		spriteBatch = new SpriteBatch(GraphicsDevice);
-        // TODO: use this.Content to load your game content here
+
         myPlayer = new(
             Content.Load<Texture2D>("Short_Sunflower_Sprite_Sheet"),
             new Rectangle[2]{
@@ -82,8 +82,7 @@ public class MainGame : Game
             myPlayer.animationSpeed = 3;
         }
 
-        myPlayer.FrameTimer += gameTime.ElapsedGameTime.TotalSeconds;
-        myPlayer.NextFrame();
+        myPlayer.NextFrame(gameTime);
         base.Update(gameTime);
 	}
 
@@ -91,7 +90,6 @@ public class MainGame : Game
 	{
 		GraphicsDevice.Clear(Color.CornflowerBlue);
 
-		// TODO: Add your drawing code here
         spriteBatch.Begin(samplerState:SamplerState.PointClamp);
         spriteBatch.Draw(myPlayer.spriteSheet, myPlayer.Area, 
             myPlayer.CurrentSprite, Color.White);

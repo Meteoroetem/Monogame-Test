@@ -24,6 +24,8 @@ class Player
 	public readonly Rectangle[] idleFrames;
 	public readonly Rectangle[] rightFrames;
 	public readonly Rectangle[] leftFrames;
+    private double _frameTimer = 0;
+    private int _currentFrame = 0;
     private string _currentAnimation = "Idle";
     /// <summary>
     /// Gets the a string representing the current animation.
@@ -44,8 +46,6 @@ class Player
             }
         }
     }
-    private int _currentFrame = 0;
-    private bool _nextFrame = false;
     /// <value>
     /// The sprite's scale
     /// </value>
@@ -63,33 +63,16 @@ class Player
     /// <value>The location of the current sprite of the player on the spritesheet</value>
     public Rectangle CurrentSprite => _currentSprite;
 
-    private double _frameTimer = 0;
-    /// <summary>
-    /// Counts how many seconds have passed since the last frame change.
-    /// Changes in relation to the animation speed.
-    /// </summary>
-    /// <value>The seconds that have passed since the last frame</value>
-    public double FrameTimer {
-        get => _frameTimer;
-        set{
-            if(value >= 1/animationSpeed){
-                _nextFrame = true;
-                _frameTimer = 0;
-            }
-            else{
-                _frameTimer = value;
-            }
-        }
-    }
 
-	public void NextFrame(){
-        if(_nextFrame){
+	public void NextFrame(GameTime gameTime){
+        _frameTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        if(_frameTimer >= 1/animationSpeed){
             //? If the current frame is 1, it will become 0 and vice versa.
             _currentFrame = 1 - _currentFrame;
             var _currentFrames = (Rectangle[])
                 this.GetType().GetField(_currentAnimation.ToLower() + "Frames").GetValue(this);
             _currentSprite = _currentFrames[_currentFrame];
-            _nextFrame = false;
+            _frameTimer = 0;
         }
     }
     public void Transform(Vector2 byWhat){
