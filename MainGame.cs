@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using vecs = VectSharp;
+using VectSharp.Raster;
 
 namespace Monogame_Test;
 
@@ -9,8 +12,11 @@ public class MainGame : Game
 	private GraphicsDeviceManager _graphics;
 	private SpriteBatch spriteBatch;
     Player myPlayer;
-    /*bool isKeyJustPressed = false;
-    bool wasKeyPressed = false;*/
+
+    vecs::Page text;
+    vecs::Graphics textGraphics;
+    Texture2D textTexture;
+    Stream textPngStream;
 
 
     public MainGame()
@@ -22,8 +28,16 @@ public class MainGame : Game
 
 	protected override void Initialize()
 	{
-		// TODO: Add your initialization logic here 
-		base.Initialize();
+        // TODO: Add your initialization logic here 
+        text = new(100, 100);
+        textGraphics = text.Graphics;
+        vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Halvetica");
+        vecs::Font font = new(fontFamily, 15);
+        textPngStream = new MemoryStream();
+        textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
+        ////Raster.SaveAsPNG(text, textPngStream);
+        textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);
+        base.Initialize();
 	}
 
 	protected override void LoadContent()
@@ -93,6 +107,7 @@ public class MainGame : Game
         spriteBatch.Begin(samplerState:SamplerState.PointClamp);
         spriteBatch.Draw(myPlayer.spriteSheet, myPlayer.Area, 
             myPlayer.CurrentSprite, Color.White);
+        spriteBatch.Draw(textTexture, position:new(0, 0), Color.White);
         spriteBatch.End();
         base.Draw(gameTime);
 	}
