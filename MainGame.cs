@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,10 +14,10 @@ public class MainGame : Game
 	private SpriteBatch spriteBatch;
     Player myPlayer;
 
-    vecs::Page text;
-    vecs::Graphics textGraphics;
+    
+    
     Texture2D textTexture;
-    Stream textPngStream;
+    
 
 
     public MainGame()
@@ -29,13 +30,14 @@ public class MainGame : Game
 	protected override void Initialize()
 	{
         // TODO: Add your initialization logic here 
-        text = new(100, 100);
-        textGraphics = text.Graphics;
-        vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Halvetica");
+        vecs::Page text = new(100, 100);
+        vecs::Graphics textGraphics = text.Graphics;
+        vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Courier");
         vecs::Font font = new(fontFamily, 15);
-        textPngStream = new MemoryStream();
+        Console.WriteLine(fontFamily.TrueTypeFile);
+        Stream textPngStream = new MemoryStream();
         textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
-        ////Raster.SaveAsPNG(text, textPngStream);
+        Raster.SaveAsPNG(text, textPngStream);
         textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);
         base.Initialize();
 	}
