@@ -33,7 +33,7 @@ public class MainGame : Game
         vecs::Page text = new(100, 100);
         vecs::Graphics textGraphics = text.Graphics;
         vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Courier");
-        vecs::Font font = new(fontFamily, 15);
+        vecs::Font font = new(fontFamily, 60);
         Console.WriteLine(fontFamily.TrueTypeFile);
         Stream textPngStream = new MemoryStream();
         textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
