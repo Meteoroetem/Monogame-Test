@@ -13,11 +13,7 @@ public class MainGame : Game
 	private GraphicsDeviceManager _graphics;
 	private SpriteBatch spriteBatch;
     Player myPlayer;
-
-    
-    
-    Texture2D textTexture;
-    
+    TextBox playerPropertiesTextBox;
 
 
     public MainGame()
@@ -30,7 +26,7 @@ public class MainGame : Game
 	protected override void Initialize()
 	{
         // TODO: Add your initialization logic here 
-        vecs::Page text = new(100, 100);
+        /*vecs::Page text = new(100, 100);
         vecs::Graphics textGraphics = text.Graphics;
         vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Courier");
         vecs::Font font = new(fontFamily, 60);
@@ -38,7 +34,8 @@ public class MainGame : Game
         Stream textPngStream = new MemoryStream();
         textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
         Raster.SaveAsPNG(text, textPngStream);
-        textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);
+        textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);*/
+        playerPropertiesTextBox = new(new(0, 0), vecs::FontFamily.ResolveFontFamily(vecs::FontFamily.StandardFontFamilies.Helvetica));
         base.Initialize();
 	}
 
@@ -85,9 +82,9 @@ public class MainGame : Game
         }
 
         if(downKeyPressed)
-            myPlayer.spriteScale += 1;
+            myPlayer.SpriteScale += 1;
         else if(upKeyPressed)
-            myPlayer.spriteScale -= 1;
+            myPlayer.SpriteScale -= 1;
 
         if(spaceBarPressed){
             myPlayer.moveSpeed = 1;
@@ -97,7 +94,8 @@ public class MainGame : Game
             myPlayer.moveSpeed = 0.5f;
             myPlayer.animationSpeed = 3;
         }
-
+        playerPropertiesTextBox.Text = $"Scale: {myPlayer.SpriteScale}, Move Speed: {myPlayer.moveSpeed}\n"+
+            $"Animation Speed: {myPlayer.animationSpeed},Animation: {myPlayer.CurrentAnimation}";
         myPlayer.NextFrame(gameTime);
         base.Update(gameTime);
 	}
@@ -109,7 +107,7 @@ public class MainGame : Game
         spriteBatch.Begin(samplerState:SamplerState.PointClamp);
         spriteBatch.Draw(myPlayer.spriteSheet, myPlayer.Area, 
             myPlayer.CurrentSprite, Color.White);
-        spriteBatch.Draw(textTexture, position:new(0, 0), Color.White);
+        spriteBatch.Draw(playerPropertiesTextBox.GetTexture2D(GraphicsDevice), playerPropertiesTextBox.box.Location.ToVector2(), Color.White);
         spriteBatch.End();
         base.Draw(gameTime);
 	}
