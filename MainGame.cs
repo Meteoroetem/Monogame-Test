@@ -35,7 +35,7 @@ public class MainGame : Game
         textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
         Raster.SaveAsPNG(text, textPngStream);
         textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);*/
-        playerPropertiesTextBox = new(new(0, 0), vecs::FontFamily.ResolveFontFamily(vecs::FontFamily.StandardFontFamilies.Helvetica));
+        playerPropertiesTextBox = new(new(0, 0), vecs::FontFamily.ResolveFontFamily(vecs::FontFamily.StandardFontFamilies.Helvetica), 30);
         base.Initialize();
 	}
 
@@ -66,11 +66,13 @@ public class MainGame : Game
 
         if(rightKeyPressed)
         {
-            myPlayer.CurrentAnimation = "Right";
-            myPlayer.Transform(Vector2.UnitX);
-
             if(leftKeyPressed)
                 myPlayer.CurrentAnimation = "Idle";
+            else
+            {
+                myPlayer.CurrentAnimation = "Right";
+                myPlayer.Transform(Vector2.Zero+Vector2.UnitX);
+            }
         }
         else if(leftKeyPressed)
         {
@@ -91,11 +93,11 @@ public class MainGame : Game
             myPlayer.animationSpeed = 6;
         }
         else{
-            myPlayer.moveSpeed = 0.5f;
+            myPlayer.moveSpeed = 1;
             myPlayer.animationSpeed = 3;
         }
-        playerPropertiesTextBox.Text = $"Scale: {myPlayer.SpriteScale}, Move Speed: {myPlayer.moveSpeed}\n"+
-            $"Animation Speed: {myPlayer.animationSpeed},Animation: {myPlayer.CurrentAnimation}";
+        playerPropertiesTextBox.Text = $"Scale: {myPlayer.SpriteScale}\nMove Speed: {myPlayer.moveSpeed}\n"+
+            $"Animation Speed: {myPlayer.animationSpeed}\nAnimation: {myPlayer.CurrentAnimation}\nAreaRect: {myPlayer.Area}";
         myPlayer.NextFrame(gameTime);
         base.Update(gameTime);
 	}

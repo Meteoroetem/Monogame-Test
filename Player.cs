@@ -11,8 +11,11 @@ class Player
     /// </summary>
     /// <value>The fps of the animation</value>
     public float animationSpeed = 3;
-    public float moveSpeed = 0.5f;
+    public int moveSpeed = 1;
     private int _spriteScale = 10;
+    /// <value>
+    /// The sprite's scale
+    /// </value>
     public int SpriteScale{
         get => _spriteScale;
         set{
@@ -52,9 +55,7 @@ class Player
             }
         }
     }
-    /// <value>
-    /// The sprite's scale
-    /// </value>
+    
     private Rectangle _area;
     /// <summary>
     /// A rectangle that represents the location and boundries of the player
@@ -81,6 +82,9 @@ class Player
             _frameTimer = 0;
         }
     }
+    ///<summary>
+    ///Transforms the player by a Vector2 with a magnitude directly relative to the sprite's scale
+    ///</summary>
     public void Transform(Vector2 byWhat){
         _area.Location = (_area.Location.ToVector2() + (_spriteScale*moveSpeed)*byWhat).ToPoint();
     }
