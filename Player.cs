@@ -7,11 +7,13 @@ namespace Monogame_Test;
 class Player
 {
     /// <summary>
-    /// Determines how many frames per second the animation will have
+    /// Determines how many calculation cycles per second there will be.
+    /// That will affect the animation speed aswell as the movement
     /// </summary>
-    /// <value>The fps of the animation</value>
-    public float animationSpeed = 3;
-    public int moveSpeed = 1;
+    /// <value>Number of calculation cycles</value>
+    public float cyclesPerSecond = 60;
+    public float animationfps = 3;
+    public float moveSpeed = 1;
     private int _spriteScale = 10;
     /// <value>
     /// The sprite's scale
@@ -33,7 +35,8 @@ class Player
 	public readonly Rectangle[] idleFrames;
 	public readonly Rectangle[] rightFrames;
 	public readonly Rectangle[] leftFrames;
-    private double _frameTimer = 0;
+    private double _animationFrameTimer = 0;
+    private double _cycleTimer = 0;
     private int _currentFrame = 0;
     private string _currentAnimation = "Idle";
     /// <summary>
@@ -49,14 +52,15 @@ class Player
                 if (_currentAnimation != value)
                 {
                     _currentAnimation = value;
-                    var currentFrames = (Rectangle[])this.GetType().GetField(value.ToLower() + "Frames").GetValue(this);
-                    _currentSprite = currentFrames[_currentFrame];
+                    var _currentFrames = (Rectangle[])this.GetType().GetField(value.ToLower() + "Frames").GetValue(this);
+                    _currentSprite = _currentFrames[_currentFrame];
                 }
             }
         }
     }
     
     private Rectangle _area;
+    private Vector2 _movementDue;
     /// <summary>
     /// A rectangle that represents the location and boundries of the player
     /// </summary>
@@ -72,20 +76,26 @@ class Player
 
 
 	public void NextFrame(GameTime gameTime){
-        _frameTimer += gameTime.ElapsedGameTime.TotalSeconds;
-        if(_frameTimer >= 1/animationSpeed){
+        _animationFrameTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        _cycleTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        if(_animationFrameTimer >= 1/animationfps){
             //? If the current frame is 1, it will become 0 and vice versa.
             _currentFrame = 1 - _currentFrame;
             var _currentFrames = (Rectangle[])
                 this.GetType().GetField(_currentAnimation.ToLower() + "Frames").GetValue(this);
             _currentSprite = _currentFrames[_currentFrame];
-            _frameTimer = 0;
+            _animationFrameTimer = 0;
+        }
+        if(_cycleTimer >= 1/cyclesPerSecond){
+            _area.Location = new(_area.Location.X + (int)_movementDue.X, _area.Location.Y + (int)_movementDue.Y);
+            _movementDue = new(_movementDue.X - (int)_movementDue.X, _movementDue.Y - (int)_movementDue.Y);
+            _cycleTimer = 0;
         }
     }
     ///<summary>
     ///Transforms the player by a Vector2 with a magnitude directly relative to the sprite's scale
     ///</summary>
     public void Transform(Vector2 byWhat){
-        _area.Location = (_area.Location.ToVector2() + (_spriteScale*moveSpeed)*byWhat).ToPoint();
+        _movementDue += (_spriteScale*moveSpeed)*byWhat;
     }
 }

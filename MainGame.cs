@@ -71,7 +71,7 @@ public class MainGame : Game
             else
             {
                 myPlayer.CurrentAnimation = "Right";
-                myPlayer.Transform(Vector2.Zero+Vector2.UnitX);
+                myPlayer.Transform(Vector2.UnitX);
             }
         }
         else if(leftKeyPressed)
@@ -90,14 +90,14 @@ public class MainGame : Game
 
         if(spaceBarPressed){
             myPlayer.moveSpeed = 1;
-            myPlayer.animationSpeed = 6;
+            myPlayer.animationfps = 6;
         }
         else{
-            myPlayer.moveSpeed = 1;
-            myPlayer.animationSpeed = 3;
+            myPlayer.moveSpeed =  0.5f;
+            myPlayer.animationfps = 3;
         }
         playerPropertiesTextBox.Text = $"Scale: {myPlayer.SpriteScale}\nMove Speed: {myPlayer.moveSpeed}\n"+
-            $"Animation Speed: {myPlayer.animationSpeed}\nAnimation: {myPlayer.CurrentAnimation}\nAreaRect: {myPlayer.Area}";
+            $"Animation Speed: {myPlayer.animationfps}\nAnimation: {myPlayer.CurrentAnimation}\nAreaRect: {myPlayer.Area}";
         myPlayer.NextFrame(gameTime);
         base.Update(gameTime);
 	}
