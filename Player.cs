@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Monogame_Test;
-
+/// <summary>
+/// A 2D Player class. It loads a spritesheet and an array of rects to determine it's sprites. Has a NextFrame() method that needs to be called every frame.
+/// </summary>
 class Player
 {
     /// <summary>
@@ -66,7 +68,7 @@ class Player
     /// </summary>
     /// <value>The location and boundries of the player</value>
     public Rectangle Area =>
-            new Rectangle(_area.Location, new(11 * _spriteScale, 20 * _spriteScale));
+            new(_area.Location, new(11 * _spriteScale, 20 * _spriteScale));
     private Rectangle _currentSprite;
     /// <summary>
     /// The rectangle of the current sprite in the spritesheet
