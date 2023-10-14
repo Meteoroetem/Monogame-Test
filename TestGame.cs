@@ -8,7 +8,7 @@ using VectSharp.Raster;
 
 namespace Monogame_Test;
 
-public class MainGame : Game
+public class TestGame : Game
 {
 	private GraphicsDeviceManager _graphics;
 	private SpriteBatch spriteBatch;
@@ -16,7 +16,7 @@ public class MainGame : Game
     TextBox playerPropertiesTextBox;
 
 
-    public MainGame()
+    public TestGame()
 	{
 		_graphics = new GraphicsDeviceManager(this);
 		Content.RootDirectory = "Content";
