@@ -19,9 +19,10 @@ public class Tilemap : List<List<Tile>>{
     /// <param name="parserKey">A function that takes a character as a parameter and returns a Tile</param>
     public Tilemap(Stream levelFile, Func<char, Tile> parserKey){
         using StreamReader reader = new(levelFile);
-        string? line = reader.ReadLine();
-        char[][] levelCode = new char[reader.ToString().Length/line.Length][];
-        byte cnt = 0;
+        string line = reader.ReadLine();
+        int tilemapHeight = (int)reader.BaseStream.Length/line.Length;
+        char[][] levelCode = new char[tilemapHeight][];
+        int cnt = 0;
         while (line != null){
             levelCode[cnt] = line.ToCharArray();
             cnt++;

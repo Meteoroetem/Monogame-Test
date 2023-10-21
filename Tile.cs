@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Monogame_Test;
 
+#nullable enable
 public class Tile{
-    public readonly Texture2D texture;
-    public readonly TileType type;
-    public Tile(Texture2D texture, TileType type){
-        this.texture = texture;
-        this.type = type;
+    public readonly Texture2D? Texture;
+    public readonly TileType Type;
+    public Tile(Texture2D? texture, TileType type){
+        this.Texture = texture;
+        this.Type = type;
     }
 
 }
@@ -16,5 +17,6 @@ public class Tile{
 public enum TileType{
     platform,
     solid,
-    foreground
+    foreground,
+    blank
 }

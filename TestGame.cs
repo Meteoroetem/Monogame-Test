@@ -10,7 +10,7 @@ namespace Monogame_Test;
 
 public class TestGame : Game
 {
-	private GraphicsDeviceManager _graphics;
+	private readonly GraphicsDeviceManager _graphics;
 	private SpriteBatch spriteBatch;
     Player myPlayer;
     TextBox playerPropertiesTextBox;
@@ -26,15 +26,6 @@ public class TestGame : Game
 	protected override void Initialize()
 	{
         // TODO: Add your initialization logic here 
-        /*vecs::Page text = new(100, 100);
-        vecs::Graphics textGraphics = text.Graphics;
-        vecs::FontFamily fontFamily = vecs::FontFamily.ResolveFontFamily("Courier");
-        vecs::Font font = new(fontFamily, 60);
-        Console.WriteLine(fontFamily.TrueTypeFile);
-        Stream textPngStream = new MemoryStream();
-        textGraphics.StrokeText(new vecs::Point(0, 0), "Test", font, vecs::Colours.Black);
-        Raster.SaveAsPNG(text, textPngStream);
-        textTexture = Texture2D.FromStream(GraphicsDevice, textPngStream);*/
         playerPropertiesTextBox = new(new(0, 0), vecs::FontFamily.ResolveFontFamily(vecs::FontFamily.StandardFontFamilies.Helvetica), 30);
         base.Initialize();
 	}
@@ -62,7 +53,7 @@ public class TestGame : Game
         bool upKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Up);
         bool downKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Down);
         bool spaceBarPressed = Keyboard.GetState().IsKeyDown(Keys.Space);
-        bool shiftKeyPressed = Keyboard.GetState().IsKeyDown(Keys.LeftShift);
+        //bool shiftKeyPressed = Keyboard.GetState().IsKeyDown(Keys.LeftShift);
 
         if(rightKeyPressed)
         {
