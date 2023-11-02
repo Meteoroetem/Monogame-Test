@@ -98,7 +98,7 @@ public class TestGame : Game
 		GraphicsDevice.Clear(Color.CornflowerBlue);
 
         spriteBatch.Begin(samplerState:SamplerState.PointClamp);
-        spriteBatch.Draw(myPlayer.spriteSheet, myPlayer.Area, 
+        spriteBatch.Draw(myPlayer.SpriteSheet, myPlayer.Area, 
             myPlayer.CurrentSprite, Color.White);
         spriteBatch.Draw(playerPropertiesTextBox.GetTexture2D(GraphicsDevice), playerPropertiesTextBox.box.Location.ToVector2(), Color.White);
         spriteBatch.End();

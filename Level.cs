@@ -10,22 +10,28 @@ public class Level
 	public readonly string Name;
 	public readonly byte Id;
 	public readonly Tilemap Tilemap;
-	public readonly Rectangle CameraRect;
+	public Rectangle CameraRect;
 	public Level(Tilemap tilemap, Rectangle cameraRect){
-		this.Tilemap = tilemap;
-		this.CameraRect = cameraRect;
+		Tilemap = tilemap;
+		CameraRect = cameraRect;
 	}
-	public void Draw(ref SpriteBatch spriteBatch){
-		int tileWidth = Tilemap[0][0].Texture.Width;
-		int tileDrawWidth = CameraRect.Width/tileWidth;
-		int tileDrawHeight = CameraRect.Width/tileWidth;
-		
-		for (int i = 0; i < tileDrawHeight; i++){
-			for (int j = 0; j < tileDrawWidth; j++){
+	public void Draw(ref SpriteBatch spriteBatch, GraphicsDeviceManager graphics){
+		int tileWidth = Tilemap[0][0].Texture.Width; //Width of the Texture
+		int tileDrawWidth = CameraRect.Width/tileWidth; //How many tiles should be drawn for each row
+		int tileDrawHeight = CameraRect.Width/tileWidth; //How many tiles should be drawn for each column
+		int actualTileWidth = graphics.PreferredBackBufferWidth/tileDrawWidth; //Scaling the texture 
+		int actualTileHeight = graphics.PreferredBackBufferWidth/tileDrawHeight;
+		int startTileRow = CameraRect.Y/tileWidth;
+		int startTileColumn = CameraRect.X/tileDrawWidth;
+
+		for (int i = startTileRow; i <= startTileRow+tileDrawHeight; i++){
+			for (int j = startTileColumn; j <= startTileColumn+tileDrawWidth; j++){
 				try{
 					spriteBatch.Draw(
 						Tilemap[i][j].Texture,
-						new Vector2(j*tileWidth,i*tileWidth),
+						new Rectangle(actualTileWidth*(j-startTileColumn),actualTileHeight*(i-startTileRow),
+							actualTileWidth,
+							actualTileHeight),
 						Color.White);
 				}
 				catch (ArgumentOutOfRangeException){

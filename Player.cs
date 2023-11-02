@@ -27,16 +27,16 @@ class Player
         }
     }
     public Player(Texture2D _spriteSheet, Rectangle[] _idleFrames, Rectangle[] _rightFrames, Rectangle[] _leftFrames){
-        spriteSheet = _spriteSheet;
-        idleFrames = _idleFrames;
-        rightFrames = _rightFrames;
-        leftFrames = _leftFrames;
-        _area = new Rectangle(0,0,11*_spriteScale,20*_spriteScale);
+        SpriteSheet = _spriteSheet;
+        IdleFrames = _idleFrames;
+        RightFrames = _rightFrames;
+        LeftFrames = _leftFrames;
+        _area = new Rectangle(0,0,_idleFrames[0].Width*_spriteScale,IdleFrames[0].Height*_spriteScale);
     }
-	public readonly Texture2D spriteSheet;
-	public readonly Rectangle[] idleFrames;
-	public readonly Rectangle[] rightFrames;
-	public readonly Rectangle[] leftFrames;
+	public readonly Texture2D SpriteSheet;
+	public readonly Rectangle[] IdleFrames;
+	public readonly Rectangle[] RightFrames;
+	public readonly Rectangle[] LeftFrames;
     private double _animationFrameTimer = 0;
     private double _cycleTimer = 0;
     private int _currentFrame = 0;
@@ -68,7 +68,7 @@ class Player
     /// </summary>
     /// <value>The location and boundries of the player</value>
     public Rectangle Area =>
-            new(_area.Location, new(11 * _spriteScale, 20 * _spriteScale));
+            new(_area.Location, new(IdleFrames[0].Width * _spriteScale, IdleFrames[0].Height * _spriteScale));
     private Rectangle _currentSprite;
     /// <summary>
     /// The rectangle of the current sprite in the spritesheet
