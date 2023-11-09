@@ -10,8 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Monogame_Test;
 
 public class Tilemap : List<List<Tile>>{
-    //public readonly Tile[][] tiles;
-
     /// <summary>
     /// The only constructor for the Tilemap class, it takes a text file and coverts it to a 2D array of Tiles using the provided key
     /// </summary>
@@ -30,5 +28,28 @@ public class Tilemap : List<List<Tile>>{
         }
         var tiles = levelCode.Select(lines => lines.Select(character => parserKey(character)).ToList()).ToList();
         AddRange(tiles);
+    }
+    public Texture2D GetTexture2D(GraphicsDevice gd){
+        var returnTexture = new Texture2D(
+            gd, this[0].Count * this[0][0].Texture.Width, this.Count * this[0][0].Texture.Width);
+        Color[] texturePixelData = new Color[this[0].Count * this[0][0].Texture.Width * this.Count * this[0][0].Texture.Width];
+
+        Color[][][] sourceTilesPixels = new Color[this.Count][][];
+
+        //* Foreach tile in the tilemap
+        for(int row = 0; row < this.Count; row++){
+            for(int col = 0; col < this[row].Count; col++){
+                this[row][col].Texture.GetData<Color>(sourceTilesPixels[row][col]);
+            }
+        }
+
+        for(int i = 0; i < texturePixelData.Length; i++){
+            int tileIndex = i / this[0][0].Texture.Width;
+            int tileRow = tileIndex / this[0].Count;
+            int tileCol = tileIndex % this[0].Count;
+            texturePixelData[i] = sourceTilesPixels[tileRow][tileCol][i/this[tileRow][tileCol].Texture.Width];
+        }
+        returnTexture.SetData<Color>(texturePixelData);
+        return returnTexture;
     }
 }
