@@ -45,7 +45,8 @@ public class TilemapTestGame : Game
             new(
                 levelStream,
                 TestLevelKey),
-            new(0,0,18*10,18*15));
+            new(0,0,18*10,18*15),
+			GraphicsDevice);
 
         sunflower = new(
             Content.Load<Texture2D>("Short_Sunflower_Sprite_Sheet"),
@@ -64,8 +65,8 @@ public class TilemapTestGame : Game
 	protected override void Update(GameTime gameTime){
 		bool leftKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Left);
         bool rightKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Right);
-        //bool upKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Up);
-        //bool downKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Down);
+        bool upKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Up);
+        bool downKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Down);
         //bool spaceBarPressed = Keyboard.GetState().IsKeyDown(Keys.Space);
 
 		playerVelocity += playerAcceleration;
@@ -73,27 +74,29 @@ public class TilemapTestGame : Game
 
 		if(rightKeyPressed)
         {
-            if(leftKeyPressed)
-                sunflower.CurrentAnimation = "Idle";
+            if(leftKeyPressed){
+				
+                //sunflower.CurrentAnimation = "Idle";
+			}
             else
             {
-                sunflower.CurrentAnimation = "Right";
-                playerVelocity.X = 1;
+                //sunflower.CurrentAnimation = "Right";
+                //playerVelocity.X = 1;
             }
         }
         else if(leftKeyPressed)
         {
-            sunflower.CurrentAnimation = "Left";
-            playerVelocity.X = -1;
+            //sunflower.CurrentAnimation = "Left";
+            //playerVelocity.X = -1;
         }
         else{
-            sunflower.CurrentAnimation = "Idle";
+            //sunflower.CurrentAnimation = "Idle";
         }
 
-		/*
+		
 		testLevel.CameraRect.X += leftKeyPressed && testLevel.CameraRect.X >= 5 ? -5 : (rightKeyPressed ? +5 : 0);
 		testLevel.CameraRect.Y += upKeyPressed  && testLevel.CameraRect.Y >= 5 ? -5 : (downKeyPressed ? +5 : 0);
-		*/
+		
 		if (sunflower.Area.Location.Y >= _graphics.PreferredBackBufferHeight-sunflower.Area.Height){
 			playerVelocity.Y = 0;
 		}
@@ -107,7 +110,8 @@ public class TilemapTestGame : Game
 
 		// TODO: Add your drawing code here
 		spriteBatch.Begin(samplerState:SamplerState.PointClamp);
-		testLevel.Draw(ref spriteBatch, _graphics);
+		//testLevel.Draw(ref spriteBatch, _graphics);
+		spriteBatch.Draw(testLevel.tilemapTexture, Vector2.Zero, testLevel.CameraRect, Color.White);
 		spriteBatch.Draw(sunflower.SpriteSheet, sunflower.Area, 
             sunflower.CurrentSprite, Color.White);
 		spriteBatch.End();

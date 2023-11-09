@@ -10,10 +10,12 @@ public class Level
 	public readonly string Name;
 	public readonly byte Id;
 	public readonly Tilemap Tilemap;
+	public readonly Texture2D tilemapTexture;
 	public Rectangle CameraRect;
-	public Level(Tilemap tilemap, Rectangle cameraRect){
+	public Level(Tilemap tilemap, Rectangle cameraRect, GraphicsDevice gd){
 		Tilemap = tilemap;
 		CameraRect = cameraRect;
+		tilemapTexture = Tilemap.GetTexture2D(gd);
 	}
 	public void Draw(ref SpriteBatch spriteBatch, GraphicsDeviceManager graphics){
 		int tileWidth = Tilemap[0][0].Texture.Width; //Width of the Texture

@@ -38,16 +38,25 @@ public class Tilemap : List<List<Tile>>{
 
         //* Foreach tile in the tilemap
         for(int row = 0; row < this.Count; row++){
+            sourceTilesPixels[row] = new Color[this[0].Count][];
             for(int col = 0; col < this[row].Count; col++){
+                sourceTilesPixels[row][col] = new Color[(int)Math.Pow(this[0][0].Texture.Width, 2)];
                 this[row][col].Texture.GetData<Color>(sourceTilesPixels[row][col]);
             }
         }
 
         for(int i = 0; i < texturePixelData.Length; i++){
-            int tileIndex = i / this[0][0].Texture.Width;
+            /*int tileIndex = i / this[0][0].Texture.Width;
             int tileRow = tileIndex / this[0].Count;
-            int tileCol = tileIndex % this[0].Count;
-            texturePixelData[i] = sourceTilesPixels[tileRow][tileCol][i/this[tileRow][tileCol].Texture.Width];
+            int tileCol = tileIndex % this[0].Count;*/
+            int pixelRow = i / (this[0].Count*this[0][0].Texture.Width);
+            int pixelCol = i % (this[0].Count*this[0][0].Texture.Width);
+            int tileRow = pixelRow / this[0][0].Texture.Width;
+            int tileCol = pixelCol / this[0][0].Texture.Width;
+            int pixelTileRow = pixelRow % this[0][0].Texture.Width;
+            int pixelTileCol = pixelCol % this[0][0].Texture.Width;
+
+            texturePixelData[i] = sourceTilesPixels[tileRow][tileCol][pixelTileCol + pixelTileRow*this[0][0].Texture.Width];
         }
         returnTexture.SetData<Color>(texturePixelData);
         return returnTexture;
