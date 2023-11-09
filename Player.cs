@@ -54,7 +54,7 @@ class Player
                 if (_currentAnimation != value)
                 {
                     _currentAnimation = value;
-                    var _currentFrames = (Rectangle[])this.GetType().GetField(value.ToLower() + "Frames").GetValue(this);
+                    var _currentFrames = (Rectangle[])this.GetType().GetField(value + "Frames").GetValue(this);
                     _currentSprite = _currentFrames[_currentFrame];
                 }
             }
@@ -84,7 +84,7 @@ class Player
             //? If the current frame is 1, it will become 0 and vice versa.
             _currentFrame = 1 - _currentFrame;
             var _currentFrames = (Rectangle[])
-                this.GetType().GetField(_currentAnimation.ToLower() + "Frames").GetValue(this);
+                this.GetType().GetField(_currentAnimation + "Frames").GetValue(this);
             _currentSprite = _currentFrames[_currentFrame];
             _animationFrameTimer = 0;
         }
