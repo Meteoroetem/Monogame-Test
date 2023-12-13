@@ -4,14 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Monogame_Test;
 
 #nullable enable
-public class Tile{
-    public readonly Texture2D? Texture;
-    public readonly TileType Type;
-    public Tile(Texture2D? texture, TileType type){
-        this.Texture = texture;
-        this.Type = type;
-    }
-
+public record Tile(Texture2D? Texture, TileType Type){
+    public Rectangle Area {get; init;}
 }
 
 public enum TileType{

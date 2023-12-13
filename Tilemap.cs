@@ -28,6 +28,18 @@ public class Tilemap : List<List<Tile>>{
         }
         var tiles = levelCode.Select(lines => lines.Select(character => parserKey(character)).ToList()).ToList();
         AddRange(tiles);
+        //* Add an area rectangle for each tile
+        for(int row = 0; row < this.Count; row++){
+            for(int col = 0; col < this[row].Count; col++){
+                this[row][col] = new(this[row][col].Texture, this[row][col].Type){
+                    Area = new(
+                        col*this[row][col].Texture.Width,
+                        row*this[row][col].Texture.Width,
+                        this[row][col].Texture.Width,
+                        this[row][col].Texture.Width)
+                };
+            }
+        }
     }
     public Texture2D GetTexture2D(GraphicsDevice gd){
         var returnTexture = new Texture2D(
@@ -44,7 +56,7 @@ public class Tilemap : List<List<Tile>>{
                 this[row][col].Texture.GetData<Color>(sourceTilesPixels[row][col]);
             }
         }
-
+        //* For each pixel in the complete Texture2D instance
         for(int i = 0; i < texturePixelData.Length; i++){
             /*int tileIndex = i / this[0][0].Texture.Width;
             int tileRow = tileIndex / this[0].Count;
