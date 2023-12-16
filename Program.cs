@@ -1,2 +1,2 @@
-﻿using var game = new Monogame_Test.TilemapTestGame();
+﻿using var game = new Monogame_Test.PhysicsTestGame();
 game.Run();

@@ -20,9 +20,6 @@ public class TilemapTestGame : Game
 		_ => throw new ArgumentOutOfRangeException(nameof(c), $"Not expected char value: {c}")
 	};
 	Level testLevel;
-	Player sunflower;
-	Vector2 playerVelocity;
-	Vector2 playerAcceleration;
 
 	public TilemapTestGame(){
 		_g = new GraphicsDeviceManager(this);
@@ -31,8 +28,6 @@ public class TilemapTestGame : Game
 
 	protected override void Initialize(){
 		// TODO: Add your initialization logic here
-		playerAcceleration = new(0, 0.05f);
-		playerVelocity = new(0,0);
 
 		base.Initialize();
 	}
@@ -47,19 +42,6 @@ public class TilemapTestGame : Game
                 TestLevelKey),
             new(0,0,18*16,18*8),
 			GraphicsDevice);
-
-        sunflower = new(
-            Content.Load<Texture2D>("Short_Sunflower_Sprite_Sheet"),
-            new Rectangle[2]{
-                new(0,0,11,20), new(0,21,11,20)},
-            new Rectangle[2]{
-                new(12,0,11,20), new(12,21,11,20)
-            },
-            new Rectangle[2]{
-                new(24,0,11,20), new(24,21,11,20)
-            }){
-            	SpriteScale = 5
-        	};
     }
 
 	protected override void Update(GameTime gameTime){
@@ -68,42 +50,9 @@ public class TilemapTestGame : Game
         bool upKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Up);
         bool downKeyPressed = Keyboard.GetState().IsKeyDown(Keys.Down);
         //bool spaceBarPressed = Keyboard.GetState().IsKeyDown(Keys.Space);
+		//* right if right key pressed, left if left key pressed. else nothing
+		testLevel.CameraRect.X += 10 * (rightKeyPressed ^ leftKeyPressed ? (rightKeyPressed ? 1 : -1) : 0);
 
-		playerVelocity += playerAcceleration;
-		playerAcceleration.X = playerVelocity.X < 0 ? 1 : playerVelocity.X > 0 ? -1 : 0;
-
-		if(rightKeyPressed)
-        {
-            if(leftKeyPressed){
-				
-                sunflower.CurrentAnimation = "Idle";
-			}
-            else
-            {
-                sunflower.CurrentAnimation = "Right";
-                playerVelocity.X = 1;
-            }
-        }
-        else if(leftKeyPressed)
-        {
-            sunflower.CurrentAnimation = "Left";
-            playerVelocity.X = -1;
-        }
-        else{
-            sunflower.CurrentAnimation = "Idle";
-        }
-
-		
-		/*testLevel.CameraRect.X += leftKeyPressed && testLevel.CameraRect.X >= 5 ? -5 : (rightKeyPressed ? +5 : 0);
-		testLevel.CameraRect.Y += upKeyPressed  && testLevel.CameraRect.Y >= 5 ? -5 : (downKeyPressed ? +5 : 0);*/
-		
-
-		if (sunflower.Area.Location.Y >= _g.PreferredBackBufferHeight-sunflower.Area.Height){
-			playerVelocity.Y = 0;
-		}
-		sunflower.Transform(playerVelocity);
-		testLevel.CameraRect.X = sunflower.Area.X;
-		sunflower.NextFrame(gameTime);
 		base.Update(gameTime);
 	}
 
@@ -116,8 +65,6 @@ public class TilemapTestGame : Game
 		spriteBatch.Draw(testLevel.tilemapTexture,
 			new Rectangle(0,0,_g.PreferredBackBufferWidth,_g.PreferredBackBufferHeight),
 			testLevel.CameraRect, Color.White);
-		spriteBatch.Draw(sunflower.SpriteSheet, sunflower.Area, 
-            sunflower.CurrentSprite, Color.White);
 		spriteBatch.End();
 		base.Draw(gameTime);
 	}

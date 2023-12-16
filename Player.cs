@@ -6,7 +6,7 @@ namespace Monogame_Test;
 /// <summary>
 /// A 2D Player class. It loads a spritesheet and an array of rects to determine it's sprites. Has a NextFrame() method that needs to be called every frame.
 /// </summary>
-class Player
+public class Player
 {
     /// <summary>
     /// Determines how many calculation cycles per second there will be.
