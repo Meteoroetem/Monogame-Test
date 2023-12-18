@@ -13,8 +13,11 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Levels/0.txt
+#begin Levels/TestLevel.lvl
 /copy:Levels/TestLevel.lvl
+
+#begin Levels/PhysicsTestLevel.lvl
+/copy:Levels/PhysicsTestLevel.lvl
 
 #begin Short_Sunflower_Sprite_Sheet.png
 /importer:TextureImporter

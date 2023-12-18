@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -6,13 +7,16 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Test;
 
 public class PhysicsPlayer : Player{
-    public Vector2 velocity = new(0, 0.05f);
+    public Vector2 velocity = new(0, 0.5f);
     public Vector2 acceleration = new(0, 0);
     public PhysicsPlayer(Texture2D _spriteSheet, Rectangle[] _idleFrames, Rectangle[] _rightFrames, Rectangle[] _leftFrames) : base(_spriteSheet, _idleFrames, _rightFrames, _leftFrames){}
     public new void NextFrame(GameTime gameTime){
         base.NextFrame(gameTime);
         velocity += acceleration;
         Transform(velocity);
+    }
+    public Collision IsCollidingWith(Rectangle otherCollider){
+        return new(Area, otherCollider);
     }
 }
 
@@ -29,7 +33,7 @@ public class PhysicsTestGame : Game
 		'#' => new(Content.Load<Texture2D>("Tiles/Dirt"), TileType.solid),
 		_ => throw new ArgumentOutOfRangeException(nameof(c), $"Not expected char value: {c}")
 	};
-    Level testLevel;
+    Level physicsTestLevel;
 	PhysicsPlayer sunflower;
 
     public PhysicsTestGame()
@@ -42,12 +46,17 @@ public class PhysicsTestGame : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        base.Initialize();
-    }
+        using Stream levelStream = TitleContainer.OpenStream("Content/Levels/PhysicsTestLevel.lvl");
+        physicsTestLevel = new(
+            new(
+                levelStream,
+                TestLevelKey
+            ),
+            new(0,0,18*16,18*8),
+            GraphicsDevice
+        );
 
-    protected override void LoadContent()
-    {
-        spriteBatch = new SpriteBatch(GraphicsDevice);
+
         sunflower = new(
             Content.Load<Texture2D>("Short_Sunflower_Sprite_Sheet"),
             new Rectangle[2]{
@@ -60,6 +69,13 @@ public class PhysicsTestGame : Game
             }){
             	SpriteScale = 5
         	};
+
+        base.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+        spriteBatch = new SpriteBatch(GraphicsDevice);
         // TODO: use this.Content to load your game content here
     }
 
@@ -104,6 +120,8 @@ public class PhysicsTestGame : Game
 			sunflower.velocity.Y = 0;
 		}
 
+        
+
         sunflower.NextFrame(gameTime);
 
         base.Update(gameTime);
@@ -115,6 +133,9 @@ public class PhysicsTestGame : Game
 
         // TODO: Add your drawing code here
         spriteBatch.Begin(samplerState:SamplerState.PointClamp);
+        spriteBatch.Draw(physicsTestLevel.tilemapTexture,
+            new Rectangle(0,0,_g.PreferredBackBufferWidth,_g.PreferredBackBufferHeight),
+            physicsTestLevel.CameraRect, Color.White);
         spriteBatch.Draw(sunflower.SpriteSheet, sunflower.Area, 
             sunflower.CurrentSprite, Color.White);
 		spriteBatch.End();
